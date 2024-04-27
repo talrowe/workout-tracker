@@ -1,0 +1,45 @@
+/* static/css/style.css */
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f4f4f4;
+  font-family: Arial, sans-serif;
+}
+.banner {
+  color: #007BFF;
+  background-color: #EOEOEO;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+input, textarea, button {
+  margin-bottom: 10px;
+  padding: 8px;
+}
+button {
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+.workout-display {
+  text-align: left;
+  width: 300px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
