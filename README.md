@@ -24,6 +24,18 @@ Start the web server in development mode
 - [ ] write to a file
 - [ ] read from a file
 
+## Writing to a File Feature
+
+I need to add the ability to write to a log file. 
+
+- [x] Create a git branch for writing to a file.
+
+``
+
+- [ ] Add files for writing to a file.
+
+This may not be necessary
+- [ ] Add typescript to write to a file. 
 ## Notes
 
 This is just a note.

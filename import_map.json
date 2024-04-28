@@ -3,6 +3,7 @@
     "http/": "https://deno.land/std/http/",
     "components": "./components/",
     "serveDir": "jsr:@std/http/file-server",
-    "serveFile": "jsr:@std/http/file-server" 
+    "serveFile": "jsr:@std/http/file-server",
+    "deps": "./deps.ts"
   }
 }

@@ -1,5 +1,5 @@
 // routes/index.ts
-import { serveDir, serveFile } from "jsr:@std/http/file-server";
+import { serveDir, serveFile } from "deps";
 import { createFullPageHtml } from "../components/fullPage.ts";
 
 export async function handler(req: Request): Response {

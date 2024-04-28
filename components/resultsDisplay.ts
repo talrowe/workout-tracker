@@ -5,3 +5,4 @@ export function createResultsDisplayHtml(req: Request): Response {
   <div id="workoutResults"></div>
 `;
 }
+
