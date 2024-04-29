@@ -10,20 +10,25 @@ export function parseDuration(durationStr: string): Duration {
   const regex = /(\d+)\s*(h|m|s)/gi;
   let duration: Duration = { hours: 0, minutes: 0, seconds: 0 };
   let match;
+  let matched = false;
 
   while ((match = regex.exec(durationStr)) !== null) {
+    matched = true;
     const value = parseInt(match[1], 10);
-    const unti = match[2];
+    const unit = match[2];
 
     switch(unit) {
       case 'h':
-        duration.hours += value * 3600;
+        // duration.hours += value * 3600;
+        duration.hours += value;
         break;
       case 'm':
-        duration.minutes += value * 60;
+        // duration.minutes += value * 60;
+        duration.minutes += value;
         break;
       case 's':
         duration.seconds += value;
+        // duration.seconds += value;
         break;
     }
   }

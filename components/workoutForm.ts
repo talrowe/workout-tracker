@@ -5,25 +5,47 @@ export function createWorkoutFormHtml(req: Request): Response {
   return `
   <form id="workoutForm" method="POST" action="/submit">
     <input type="text" name="exercise" placeholder="Type of Exercise" required>
-    <input type="number" name="duration" placeholder="Duration (minutes)" required>
+    <input type="text" name="duration" placeholder="Duration (e.g., 1h 30m)" required>
     <textarea name="notes" placeholder="Notes"></textarea>
     <button type="submit">Submit Workout</button>
   </form>
 `;
 }
 
-export async function handleWorkoutForm(request: Request): Promise<Response> {
-  if (request.method === "POST") {
-    const formData = await reqeuest.formData();
+export async function handleWorkoutForm(req: Request): Promise<Response> {
+  if (req.method === "POST") {
+    const formData = await req.formData();
     const durationInput = formData.get("duration") as string;
+
     try {
-      const duration = parseDuration(durationInput);
-      const durationInSeconds = durationToSeconds(duration);
-      // Continue processing the form or store the data
-      return new Response(`Duration in seconds: ${durationInSeconds}`, { status: 200 });
-    } catch (error) {
-      return new Response(error.message, { status: 400 });
-    }
+    // const exercise = formData.get("exercise") || '';
+    // const durationInput = formData.get("duration") || '';
+    // const notes = formData.get("notes") || '';
+
+    // const duration = parseDuration(durationInput.toString());
+    // const durationInSeconds = durationToSeconds(duration);
+
+    const duration = parseDuration(durationInput);
+      
+    const responseData = {
+      exercise: formData.get("exercise"),
+      duration: `${duration.hours}h ${duration.minutes}m ${duration.seconds}s`,
+      notes: formData.get("notes"),
+      error: null
+    };
+
+    console.log("Sending response data:", responseData); // log to check actual data.
+    
+    return new Response(JSON.stringify(responseData), {
+      headers: { "Content-Type": "application/json" },
+      status: 200
+    });
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 400
+    });
+  }
   }
   return new Response("Method Not Allowed", { status: 405 });
-}
+  }
