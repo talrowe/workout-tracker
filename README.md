@@ -23,19 +23,20 @@ Start the web server in development mode
 - [ ] CFT calculator
 - [ ] write to a file
 - [ ] read from a file
+- [x] update time
+- [ ] Create statistics for workouts
 
 ## Writing to a File Feature
 
-I need to add the ability to write to a log file. 
+I need to add the ability to write to a log file.
 
 - [x] Create a git branch for writing to a file.
-
-``
-
 - [ ] Add files for writing to a file.
 
 This may not be necessary
-- [ ] Add typescript to write to a file. 
+
+- [ ] Add typescript to write to a file.
+
 ## Notes
 
 This is just a note.
