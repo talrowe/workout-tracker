@@ -19,8 +19,6 @@ Start the web server in development mode
 - [ ] Add a sign in feature
 - [ ] login is green
 - [ ] logout is red
-- [ ] PFT calculator
-- [ ] CFT calculator
 - [ ] write to a file
 - [ ] read from a file
 - [x] update time
