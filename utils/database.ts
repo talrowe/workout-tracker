@@ -1,11 +1,12 @@
 // utils/database.ts
 
-import { open } from "/deps.ts";
+// import { open } from "../deps.ts";
+import { DB } from "../deps.ts";
 
-const db = open("./workout_tracker.db");
+const db = new DB("./workout_tracker.db");
 
 // Creating the table if it doesn't already exist
-db.query(`
+db.execute(`
   CREATE TABLE IF NOT EXISTS workouts (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     date TEXT,
@@ -13,5 +14,10 @@ db.query(`
     duration INTEGER
 );
 `);
+
+// function to close the db
+function closeDb() {
+  db.close();
+}
 
 export default db;

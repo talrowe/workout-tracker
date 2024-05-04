@@ -5,7 +5,7 @@ import { handleWorkoutForm } from "../components/workoutForm.ts";
 import { createWorkout, getAllWorkouts, getWorkoutById, updateWorkout, deleteWorkout } from "../utils/workoutService.ts";
 
 export async function handler(req: Request): Response {
-  const url = new URL(req.url)
+  const url = new URL(req.url);
   const pathname = url.pathname;
 
   if (pathname.startsWith("/static")) {
@@ -24,14 +24,16 @@ export async function handler(req: Request): Response {
       status: 200,
     });
   } else if (pathname === "/workouts" && req.method === "POST" ) {
+    try {
     const formData = await req.formData();
     const date = formData.get("date") as string;
     const type = formData.get("type") as string;
     const duration = parseInt(formData.get("duration") as string);
-    createWorkout(date, type, duration);
+    await createWorkout(date, type, duration);
     return new Response("Workout created", { status: 201 });
-  } catch(error) {
+  } catch (error) {
     return new Response(`Failed to create workout: ${error.message}`, { status: 400 });
+  }
   }
   // addtional routes here can be adde for update and delete operations
   return new Response("404: Not Found", {
