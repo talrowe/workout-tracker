@@ -23,6 +23,28 @@ export async function handler(req: Request): Response {
       headers: { "Content-Type": "application/json" },
       status: 200,
     });
+  } else if (pathname.match(/^\/workouts\/(\d+)$/) && req.method === "PUT" ) {
+    const match = pathname.match(/^\/workouts\/(\d+)$/);
+    const id = match ? parseInt(match[1]) : null;
+    if (!id) return new Response("Invalid ID", {status: 400 });
+
+    try {
+      const formData = await req.formData();
+      const date = formData.get("date") as string;
+      const type = formData.get("type") as string;
+      const duration = parseInt(formData.get("duration") as string);
+      updateWorkout(id, date, type, duration);
+      return new Response("Workout updated", { status: 200 });
+    } catch (error) {
+      return new Response(`Failed to update workout: ${error.message}`, { status: 400 });
+    }
+  } else if (pathname.match(/^\/workouts\/(\d+)$/) && req.method === "DELETE" ) {
+    const match = pathname.match(/^\/workouts\/(\d+)$/);
+    const id = match ? parseInt(match[1]): null;
+    if (!id) return new Response("Invalid ID", { status: 400 });
+
+    deleteWorkout(id);
+    return new Response("Workout deleted", { status: 204 });
   } else if (pathname === "/workouts" && req.method === "POST" ) {
     try {
     const formData = await req.formData();
@@ -35,7 +57,7 @@ export async function handler(req: Request): Response {
     return new Response(`Failed to create workout: ${error.message}`, { status: 400 });
   }
   }
-  // addtional routes here can be adde for update and delete operations
+  // addtional routes here can be added for update and delete operations
   return new Response("404: Not Found", {
     status: 404,
   });

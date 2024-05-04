@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
       .then(response => {
         const contentType = response.headers.get("Content-Type");
         if (!response.ok) {
-          throw new Error('Network response was not ok:  ${response.status} ${response.statusText}');
+          throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
         }
         return contentType.includes("application/json") ? response.json(): response.text();
       })
